@@ -1,31 +1,30 @@
 import { useState, useRef } from "react";
-import Main from "./components/main";
-import { v4 as uuidv4 } from "uuid";
-import "./App.css";
-async function createCard(id) {
-  const newCard = await fetch(
-    `https://gravity-falls-api.vercel.app/api/characters/${id + 1}`
-  );
-  if (!newCard.ok) return "ERROR";
-  const newCardJson = await newCard.json();
-  return {
-    name: newCardJson.name,
-    imgUrl: newCardJson.image,
-    id: uuidv4(),
-    clicked: false,
-  };
-}
+import Game from "./components/Game";
+// import { v4 as uuidv4 } from "uuid";
+import "./css/App.css";
+// async function createCard(id) {
+//   const newCard = await fetch(
+//     `https://gravity-falls-api.vercel.app/api/characters/${id + 1}`
+//   );
+//   if (!newCard.ok) return "ERROR";
+//   const newCardJson = await newCard.json();
+//   return {
+//     name: newCardJson.name,
+//     imgUrl: newCardJson.image,
+//     // id: uuidv4(),
+//   };
+// }
 function App() {
   const bestScore = useRef(0);
   const [score, setScore] = useState(0);
-  const [numberOfCards, setNumberOfCards] = useState(12);
-  const [cardsInformation, setCardsInformation] = useState(
-    Array(numberOfCards)
-      .fill(null)
-      .map(() => {
-        return { id: uuid(), name: "", imgUrl: "", clicked: false };
-      })
-  );
+  // const [numberOfCards, setNumberOfCards] = useState(12);
+  // const [cardsInformation, setCardsInformation] = useState(
+  //   Array(numberOfCards)
+  //     .fill(null)
+  //     .map(() => {
+  //       return { id: uuid(), name: "", imgUrl: "", clicked: false };
+  //     })
+  // );
   const handleClick = () => {
     setScore(score + 1);
   };
@@ -33,10 +32,10 @@ function App() {
     <div className="container">
       <header>
         <h1>Memory Game</h1>
-        <h2>Current score: {score}</h2>
-        <h2>Best score: {bestScore}</h2>
+        {/* <h2>Current score: {score}</h2>
+        <h2>Best score: {bestScore}</h2> */}
       </header>
-      <Main handleClick={handleClick}></Main>
+      <Game handleClick={handleClick}></Game>
       <footer>
         <p>Copyright © 2024 Xyves</p>
         <svg
