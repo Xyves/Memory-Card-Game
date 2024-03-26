@@ -2,13 +2,18 @@ import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState, useRef } from "react";
 import Card from "./Card";
 export default function Main() {
-  const [cards, setCards] = useState(initialState);
+  const calculateNum = () => {
+    return Math.floor(Math.random() * 143) + 1;
+  };
+
   const initialState = new Array(8).fill({
     num: calculateNum(),
     name: "",
     id: uuidv4(),
     src: "",
   });
+  const [cards, setCards] = useState(initialState);
+
   // Initial load
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +24,7 @@ export default function Main() {
               `https://gravity-falls-api.vercel.app/api/characters/${card.num}`
             );
             const data = await response.json();
-            return { ...card, name: data.name, src: data.src };
+            return { ...card, name: data.name, src: data.image };
           })
         );
         setCards(updatedCards);
@@ -35,10 +40,10 @@ export default function Main() {
         const updatedCards = await Promise.all(
           cards.map(async (card) => {
             const response = await fetch(
-              `https://api.example.com/data?num=${card.num}`
+              `https://gravity-falls-api.vercel.app/api/characters/${card.num}`
             );
             const data = await response.json();
-            return { ...card, name: data.name, src: data.src };
+            return { ...card, name: data.name, src: data.image };
           })
         );
         setCards(updatedCards);
@@ -49,10 +54,6 @@ export default function Main() {
 
     fetchData();
   }, [cards]);
-
-  const calculateNum = () => {
-    return Math.floor(Math.random() * 143) + 1;
-  };
 
   // Fisher–Yates shuffle
   const shuffle = () => {
@@ -70,7 +71,7 @@ export default function Main() {
     <main>
       <div className="cardContainer">
         {cards.map((num, index, name) => (
-          <Card key={index} number={num} name={name} shuffle={shuffle} />
+          <Card key={index} num={num} name={name} shuffle={shuffle} />
         ))}
       </div>
     </main>

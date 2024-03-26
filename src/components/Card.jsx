@@ -8,9 +8,7 @@ export default function Card({ num, id, name }) {
       <div className="image">
         <img src="" alt="" />
       </div>
-      <div className="textContainer">
-        <h2>{name}</h2>
-      </div>
+      <div className="textContainer">{/* <h2>{name}</hg2> */}</div>
     </div>
   );
 }
