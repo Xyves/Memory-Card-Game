@@ -5,13 +5,18 @@ import Footer from "./components/Footer";
 import "./css/App.css";
 
 function App() {
-  const handleClick = () => {
-    setScore(score + 1);
-  };
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+
   return (
     <div className="container">
-      <Header />
-      <Game handleClick={handleClick}></Game>
+      <Header score={score} bestScore={bestScore} />
+      <Game
+        score={score}
+        bestScore={bestScore}
+        setScore={setScore}
+        setBestScore={setBestScore}
+      />
       <Footer />
     </div>
   );

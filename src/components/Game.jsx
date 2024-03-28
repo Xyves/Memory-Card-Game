@@ -1,60 +1,48 @@
 import { v4 as uuidv4 } from "uuid";
-import { useEffect, useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import Card from "./Card";
-export default function Main() {
+export default function Main({ score, bestScore, setScore, setBestScore }) {
+  const handleIncrement = () => {
+    setScore((prevScore) => prevScore + 1);
+  };
+  const [usedNumbers, setUsedNumbers] = useState([]);
   const calculateNum = () => {
-    return Math.floor(Math.random() * 143) + 1;
+    return Math.floor(Math.random() * 153) + 1;
   };
 
-  const initialState = new Array(8).fill({
+  const initialCards = Array.from({ length: 8 }, () => ({
     num: calculateNum(),
     name: "",
     id: uuidv4(),
     src: "",
-  });
-  const [cards, setCards] = useState(initialState);
+  }));
+  const [cards, setCards] = useState(initialCards);
 
-  // Initial load
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const updatedCards = await Promise.all(
-          cards.map(async (card) => {
-            const response = await fetch(
-              `https://gravity-falls-api.vercel.app/api/characters/${card.num}`
-            );
-            const data = await response.json();
-            return { ...card, name: data.name, src: data.image };
-          })
-        );
-        setCards(updatedCards);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const updatedCards = await Promise.all(
-          cards.map(async (card) => {
-            const response = await fetch(
-              `https://gravity-falls-api.vercel.app/api/characters/${card.num}`
-            );
-            const data = await response.json();
-            return { ...card, name: data.name, src: data.image };
-          })
-        );
-        setCards(updatedCards);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+    console.log(usedNumbers);
+  }, [usedNumbers]);
 
-    fetchData();
-  }, [cards]);
+  const handleClick = (num) => {
+    const isRepeated = usedNumbers.includes(num);
 
+    if (!isRepeated) {
+      handleIncrement();
+      if (bestScore === null || score + 1 > bestScore) {
+        // Check if the new score surpasses the best score
+        setBestScore(score + 1); // Update bestScore to the new score
+      }
+    } else {
+      setScore(0); // Reset score to 0
+      setUsedNumbers([]); // Reset usedNumbers array
+      if (bestScore === null || score > bestScore) {
+        // Check if the current score surpasses the best score
+        setBestScore(score); // Update bestScore to the current score
+      }
+    }
+
+    // Update usedNumbers after checking isRepeated
+    setUsedNumbers((prevUsedNumbers) => [...prevUsedNumbers, num]);
+  };
   // Fisher–Yates shuffle
   const shuffle = () => {
     const shuffledArray = [...cards];
@@ -67,13 +55,10 @@ export default function Main() {
     }
     setCards(shuffledArray);
   };
+
   return (
     <main>
-      <div className="cardContainer">
-        {cards.map((num, index, name) => (
-          <Card key={index} num={num} name={name} shuffle={shuffle} />
-        ))}
-      </div>
+      <Card shuffle={shuffle} cards={cards} handleClick={handleClick} />
     </main>
   );
 }

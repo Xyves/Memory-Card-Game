@@ -11,6 +11,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
 a {
@@ -58,13 +63,38 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
+main {
+  display: flex;
+  justify-content: center;
+}
 .cardContainer {
-  width: 90%;
+  width: 70%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 15px;
   width: 90%;
   height: 40rem;
+}
+.score {
+  padding-bottom: 5rem;
+}
+footer {
+  background-color: red;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 2rem;
+}
+.card {
+  padding: 1em;
+  background-color: red;
+  width: 15rem;
+}
+.textContainer {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
