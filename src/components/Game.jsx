@@ -1,46 +1,51 @@
 import { v4 as uuidv4 } from "uuid";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import Card from "./Card";
-export default function Main({ score, bestScore, setScore, setBestScore }) {
+export default function Game({ score, bestScore, setScore, setBestScore }) {
+  const [usedNumbers, setUsedNumbers] = useState([]);
   const handleIncrement = () => {
     setScore((prevScore) => prevScore + 1);
   };
-  const [usedNumbers, setUsedNumbers] = useState([]);
   const calculateNum = () => {
-    return Math.floor(Math.random() * 153) + 1;
+    return Math.floor(Math.random() * 215) + 1;
   };
-
-  const initialCards = Array.from({ length: 8 }, () => ({
+const generateRandomCards = ()=>{
+  return Array.from({ length: 8 }, () => ({
     num: calculateNum(),
     name: "",
     id: uuidv4(),
     src: "",
   }));
-  const [cards, setCards] = useState(initialCards);
+}
 
-  useEffect(() => {
-    console.log(usedNumbers);
-  }, [usedNumbers]);
+  const [cards, setCards] = useState(generateRandomCards);
+
+  // useEffect(() => {
+  //   console.log(usedNumbers);
+  // }, [usedNumbers]);
 
   const handleClick = (num) => {
     const isRepeated = usedNumbers.includes(num);
-
     if (!isRepeated) {
       handleIncrement();
+      shuffle()
       if (bestScore === null || score + 1 > bestScore) {
-        // Check if the new score surpasses the best score
-        setBestScore(score + 1); // Update bestScore to the new score
+        setBestScore(score + 1); 
+      }
+      if(score % 5 === 0 ){
+        setCards(generateRandomCards)
       }
     } else {
-      setScore(0); // Reset score to 0
-      setUsedNumbers([]); // Reset usedNumbers array
+      setScore(0); 
+      setUsedNumbers([]);
+      setCards( generateRandomCards)
+      // console.log(cards)
       if (bestScore === null || score > bestScore) {
-        // Check if the current score surpasses the best score
-        setBestScore(score); // Update bestScore to the current score
+        // Update bestScore to the current score
+        setBestScore(score); 
       }
     }
-
-    // Update usedNumbers after checking isRepeated
+    // Update usedNumbers array after checking isRepeated
     setUsedNumbers((prevUsedNumbers) => [...prevUsedNumbers, num]);
   };
   // Fisher–Yates shuffle
