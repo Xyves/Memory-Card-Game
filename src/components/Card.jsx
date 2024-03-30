@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 export default function Card({ cards, handleClick }) {
   const [updatedCards, setUpdatedCards] = useState([]);
+  
+  // Logic for fetching cards
   useEffect(() => {
     const fetchDataForAllCards = async () => {
       try {
@@ -18,8 +20,6 @@ export default function Card({ cards, handleClick }) {
         console.error("Error fetching data:", error);
       }
     };
-
-    // Fetch data for all cards once when the component mounts
     fetchDataForAllCards();
   }, [cards]);
 

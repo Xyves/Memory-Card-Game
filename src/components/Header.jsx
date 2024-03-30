@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 const Header = ({ score, bestScore }) => {
   return (
     <header>

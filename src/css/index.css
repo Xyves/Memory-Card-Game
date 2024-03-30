@@ -21,23 +21,11 @@ header{
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-  
 }
 .score {
   padding: 1.5rem;
 }
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+
 main {
   display: flex;
   justify-content: center;
@@ -71,11 +59,24 @@ footer {
   align-items: center;
   padding:.75rem 0 ;
 }
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
 @media (max-width:900px)  {
   .cardContainer{
     grid-template-columns: repeat(3,1fr);
   }
-}@media (max-width:500px)  {
+} 
+@media (max-width:500px)  {
   .cardContainer{
     grid-template-columns: repeat(2,1fr);
   }
