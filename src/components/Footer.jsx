@@ -1,7 +1,9 @@
 const Footer = () => {
   return (
     <footer>
-      <span>Copyright © 2024 Xyves</span>
+      <span>
+        Copyright © 2024 <a href="https://github.com/Xyves">Xyves</a>
+      </span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="1em"
