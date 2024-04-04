@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { useState} from "react";
+import { useState } from "react";
 import Card from "./Card";
 export default function Game({ score, bestScore, setScore, setBestScore }) {
   const [usedNumbers, setUsedNumbers] = useState([]);
@@ -7,42 +7,36 @@ export default function Game({ score, bestScore, setScore, setBestScore }) {
     setScore((prevScore) => prevScore + 1);
   };
   const calculateNum = () => {
-    return Math.floor(Math.random() * 215) + 1;
+    return Math.floor(Math.random() * 255) + 1;
   };
-const generateRandomCards = ()=>{
-  return Array.from({ length: 8 }, () => ({
-    num: calculateNum(),
-    name: "",
-    id: uuidv4(),
-    src: "",
-  }));
-}
-
+  const generateRandomCards = () => {
+    return Array.from({ length: 8 }, () => ({
+      num: calculateNum(),
+      name: "",
+      id: uuidv4(),
+      src: "",
+    }));
+  };
   const [cards, setCards] = useState(generateRandomCards);
-
-  // useEffect(() => {
-  //   console.log(usedNumbers);
-  // }, [usedNumbers]);
 
   const handleClick = (num) => {
     const isRepeated = usedNumbers.includes(num);
     if (!isRepeated) {
       handleIncrement();
-      shuffle()
+      shuffle();
       if (bestScore === null || score + 1 > bestScore) {
-        setBestScore(score + 1); 
+        setBestScore(score + 1);
       }
-      if(score % 5 === 0 ){
-        setCards(generateRandomCards)
+      if (score % 5 === 0) {
+        setCards(generateRandomCards);
       }
     } else {
-      setScore(0); 
+      setScore(0);
       setUsedNumbers([]);
-      setCards( generateRandomCards)
-      // console.log(cards)
+      setCards(generateRandomCards);
       if (bestScore === null || score > bestScore) {
         // Update bestScore to the current score
-        setBestScore(score); 
+        setBestScore(score);
       }
     }
     // Update usedNumbers array after checking isRepeated
