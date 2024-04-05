@@ -1,6 +1,33 @@
-# React + Vite
+# Memory Card Project
+<p align="center">
+    A simple Memory Card Game Rick and Morty theme.
+    <br />
+    <a href="https://neon-narwhal-06a78f.netlify.app/"><strong>View Demo</strong></a>
+  </p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Installation
+
+In order to setup and work on this project on your own, you will need to:
+
+1. Clone the GitHub repository to your local machine:
+
+   ```bash
+   git clone https://github.com/Xyves/Memory-Card-Game.git
+   ```
+
+2. Install the project's dependencies using npm:
+
+   ```bash
+   npm install
+   ```
+
+3. Run the project in the browser
+
+   ```bash
+   npm run dev
+   ```
+
+
 
 Currently, two official plugins are available:
 
