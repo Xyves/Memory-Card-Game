@@ -1,4 +1,7 @@
 # Memory Card Project
+
+[r.png](https://postimg.cc/DSB8MGBC)
+
 <p align="center">
     A simple Memory Card Game Rick and Morty theme.
     <br />
