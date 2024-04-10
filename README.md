@@ -3,7 +3,7 @@
 [![xaxa.png](https://i.postimg.cc/fR7kq436/xaxa.png)](https://postimg.cc/K1zZ4HDN)
 
 <p align="center">
-    A simple Memory Card Game Rick and Morty theme.
+     Memory Card Game Rick and Morty theme.
     <br />
     <a href="https://neon-narwhal-06a78f.netlify.app/"><strong>View Demo</strong></a>
   </p>
@@ -29,10 +29,3 @@ In order to setup and work on this project on your own, you will need to:
    ```bash
    npm run dev
    ```
-
-
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
