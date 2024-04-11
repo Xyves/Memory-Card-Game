@@ -1,12 +1,11 @@
-# Memory Card Project
 
-[![xaxa.png](https://i.postimg.cc/fR7kq436/xaxa.png)](https://postimg.cc/K1zZ4HDN)
-
-<p align="center">
+<h1 align="center">
      Memory Card Game Rick and Morty theme.
     <br />
     <a href="https://neon-narwhal-06a78f.netlify.app/"><strong>View Demo</strong></a>
-  </p>
+  </h1>
+  
+[![xaxa.png](https://i.postimg.cc/fR7kq436/xaxa.png)](https://postimg.cc/K1zZ4HDN)
 
 ### Installation
 
